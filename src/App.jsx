@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Box, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import DrawerAppBar from "./Sections/DrawerAppBar";
 import HomePage from "./Pages/HomePage";
 import DestinationPage from "./Pages/DestinationPage";
-import ExplorePage from './Pages/ExplorePage'
+import ExplorePage from './Pages/ExplorePage';
 
 const App = () =>
 {
@@ -19,10 +19,10 @@ const App = () =>
 
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline /> {/* Ensure consistent theme styling across components */}
+      <CssBaseline />
 
-      <Router>  {/* Enables Routing */}
-        <DrawerAppBar onToggleTheme={toggleTheme} isDarkMode={mode === "dark"} />
+      <Router>
+        <DrawerAppBar onToggleTheme={toggleTheme} isDarkMode={mode === "dark"} /> {/* Navigation Added */}
         <Box>
           <Routes>
             <Route path="/" element={<HomePage />}></Route>
@@ -31,7 +31,6 @@ const App = () =>
           </Routes>
         </Box>
       </Router>
-
     </ThemeProvider>
   );
 };

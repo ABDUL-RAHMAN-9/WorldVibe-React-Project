@@ -1,16 +1,24 @@
 import React from "react";
-import { useParams } from "react-router-dom"; // Fetch dynamic URL data
-import { Box, Container, Typography, Button, useTheme } from "@mui/material";
-import { destinations } from "../Data/destinations"; // Replace with real API later
+import { useParams } from "react-router-dom";
+import
+{
+    Box,
+    Container,
+    Typography,
+    Button,
+    useTheme,
+    useMediaQuery,
+} from "@mui/material";
+import { destinations } from "../Data/destinations";
 
 const DestinationPage = () =>
 {
-    const { id } = useParams(); // Gets the destination ID from the URL
+    const { id } = useParams();
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === "dark";
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-    // Find destination by ID
-    const destination = destinations.find(dest => dest.id === Number(id));
+    const destination = destinations.find((dest) => dest.id === Number(id));
 
     if (!destination)
     {
@@ -24,20 +32,20 @@ const DestinationPage = () =>
     }
 
     return (
-        <Container maxWidth="" sx={{ py: 11, position: "relative" }}>
-            {/* Background Image */}
+        <Container maxWidth="xl" sx={{ py: { xs: 6, md: 12 }, position: "relative" }}>
+            {/* Background Image with Gradient Overlay */}
             <Box
                 sx={{
                     width: "100%",
-                    height: { xs: 400, md: 800 },
+                    height: { xs: 400, sm: 500, md: 700, lg: 800 },
                     position: "relative",
-                    borderRadius: 3,
+                    borderRadius: 4,
                     overflow: "hidden",
-                    boxShadow: 4,
+                    boxShadow: 5,
                 }}
             >
                 <img
-                    src={"https://images.unsplash.com/photo-1731177300431-a7ea712958b4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"}
+                    src={destination.image}
                     alt={`View of ${destination.name}`}
                     style={{
                         width: "100%",
@@ -45,44 +53,75 @@ const DestinationPage = () =>
                         objectFit: "cover",
                     }}
                 />
+                {/* Overlay */}
+                <Box
+                    sx={{
+                        position: "absolute",
+                        inset: 0,
+                        background: "linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.3), rgba(0,0,0,0.7))",
+                    }}
+                />
             </Box>
 
-            {/* Responsive Text Box */}
+            {/* Text Content */}
             <Box
                 sx={{
                     position: { xs: "relative", md: "absolute" },
-                    top: { md: "25%" },
-                    right: { xs: "auto", md: 0 },
-                    width: { xs: "90%", md: "40%" },
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    backgroundColor: { xs: "transparent", md: isDarkMode ? "rgba(0,0,0,0.7)" : "rgba(255,255,255,0.7)" },
-                    color: isDarkMode ? "white" : "black",
-                    padding: { xs: 3, md: 4 },
-                    mx: "auto", // Centers content on mobile view
+                    top: { md: "20%" },
+                    left: { md: "5%" }, // ✅ Shift to left instead of right
+                    right: { md: "auto" }, // ✅ Cancel right alignment
+                    width: { xs: "100%", sm: "90%", md: "40%" },
+                    backgroundColor: {
+                        xs: "transparent",
+                        md: isDarkMode ? "rgba(0,0,0,0.75)" : "rgba(255,255,255,0.75)",
+                    },
+                    color: isDarkMode ? "#fff" : "#111",
+                    borderRadius: { xs: 0, md: 4 },
+                    p: { xs: 3, md: 5 },
+                    mx: { xs: "auto", md: 0 },
+                    mt: { xs: 3, md: 0 },
+                    boxShadow: { md: 4 },
                 }}
             >
-                <Typography variant="h2" fontWeight="bold" sx={{ mt: 5, maxWidth: 600 }}>
+                <Typography
+                    variant={isMobile ? "h4" : "h2"}
+                    fontWeight="bold"
+                    sx={{ mb: 3 }}
+                >
                     {destination.heading}
                 </Typography>
 
-                <Typography variant="body1" sx={{ mt: 4, mb: 5, maxWidth: 600, color: isDarkMode ? "#bbb" : "#444" }}>
+                <Typography
+                    variant="body1"
+                    sx={{
+                        mb: 4,
+                        color: isDarkMode ? "#ccc" : "#333",
+                        lineHeight: 1.7,
+                    }}
+                >
                     {destination.description}
                 </Typography>
 
-                {/* Call-to-Action Button */}
                 <Button
                     variant="contained"
+                    size="large"
                     sx={{
-                        mt: 4,
-                        backgroundColor: isDarkMode ? "#fff" : "#000",
+                        backgroundColor: isDarkMode ? "#fff" : "#111",
                         color: isDarkMode ? "#000" : "#fff",
+                        textTransform: "none",
+                        px: 4,
+                        py: 1.5,
+                        borderRadius: 2,
+                        transition: "all 0.3s ease",
+                        "&:hover": {
+                            backgroundColor: isDarkMode ? "#ddd" : "#000",
+                        },
                     }}
                 >
                     Plan Your Trip
                 </Button>
             </Box>
+
         </Container>
     );
 };

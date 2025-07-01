@@ -67,7 +67,6 @@ const HeroSection = () =>
                 zIndex: 10,
                 boxShadow: 2,
                 borderRadius: 2,
-                // "&:hover": { backgroundColor: "background.default" },
             }}>
                 <IconButton onClick={() => setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length)}>
                     <ArrowBackIos />
@@ -143,7 +142,6 @@ const HeroSection = () =>
                 zIndex: 10,
                 boxShadow: 2,
                 borderRadius: 2,
-                // "&:hover": { backgroundColor: "white", color: 'black' },
                 
             }}>
                 <IconButton onClick={() => setCurrentIndex((prev) => (prev + 1) % slides.length)}>

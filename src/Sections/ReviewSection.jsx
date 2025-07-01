@@ -20,10 +20,10 @@ const ReviewSection = () =>
     }, []);
 
     return (
-        <Container maxWidth="xl" sx={{ py: 10 }}>
-            <Box sx={{ py: 4 }}>
-                <Typography variant="h4" fontWeight="bold" textAlign="center" sx={{ mb: 2 }}>
-                    Traveler Reviews ✨
+        <Box sx={{ py: 4 }}>
+            <Container maxWidth="xl" sx={{ py: 10 }}>
+                <Typography variant="h4" fontWeight="bold" textAlign="center" sx={{ mb: 10 }}>
+                    Your Next Destination? Let These Reviews Inspire You
                 </Typography>
 
                 {/* Scrollable Cards */}
@@ -35,7 +35,7 @@ const ReviewSection = () =>
                         overflowX: "hidden",
                         scrollBehavior: "smooth",
                         px: 4,
-                        "&::-webkit-ReviewSection": { display: "none" },
+                        "&::-webkit-scrollbar": { display: "none" },
                         flexWrap: "nowrap",
                     }}
                 >
@@ -53,16 +53,23 @@ const ReviewSection = () =>
                             }}
                         >
                             <Avatar src={user.avatar} alt={user.name} sx={{ width: 70, height: 70, mx: "auto", mb: 2 }} />
-                            <Typography fontWeight="bold" variant="h5">{user.name}</Typography>
-                            <Typography variant="body2" color="text.secondary">{user.location}</Typography>
-                            <Typography variant="body1" sx={{ mt: 2, fontStyle: "italic" }}>"{user.feedback}"</Typography>
-                            <Typography variant="caption" color="primary" sx={{ mt: 2 }}>Joined: {user.joined}</Typography>
+                            <Typography fontWeight="bold" variant="h5">
+                                {user.name}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                                {user.location}
+                            </Typography>
+                            <Typography variant="body1" sx={{ mt: 2, fontStyle: "italic" }}>
+                                "{user.feedback}"
+                            </Typography>
+                            <Typography variant="caption" color="primary" sx={{ mt: 2 }}>
+                                Joined: {user.joined}
+                            </Typography>
                         </Paper>
                     ))}
                 </Box>
-            </Box>
-        </Container >
-
+            </Container>
+        </Box>
     );
 };
 

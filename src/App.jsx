@@ -5,6 +5,7 @@ import DrawerAppBar from "./Sections/DrawerAppBar";
 import HomePage from "./Pages/HomePage";
 import DestinationPage from "./Pages/DestinationPage";
 import ExplorePage from './Pages/ExplorePage';
+import StayPage from './Pages/StayPage'
 
 const App = () =>
 {
@@ -25,13 +26,15 @@ const App = () =>
         <DrawerAppBar onToggleTheme={toggleTheme} isDarkMode={mode === "dark"} /> {/* Navigation Added */}
         <Box>
           <Routes>
-            <Route path="/" element={<HomePage />}></Route>
-            <Route path="/destination/:id" element={<DestinationPage />}></Route>
-            <Route path="/explore" element={<ExplorePage />}></Route>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/destination/:id" element={<DestinationPage />} />
+            <Route path="/explore" element={<ExplorePage />} />
+            <Route path="/stay/:id" element={<StayPage />} />
           </Routes>
         </Box>
       </Router>
     </ThemeProvider>
+
   );
 };
 
